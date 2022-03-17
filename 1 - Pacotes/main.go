@@ -3,9 +3,10 @@ package main
 
 import (
 	"fmt"
+	"modulo/auxiliar"
 )
 
-//para ser um arquivo executável
 func main() {
-	fmt.Println("Olá mundo!")
+	fmt.Println("Escrevendo no arquivo main")
+	auxiliar.Escrever()
 }
