@@ -1,0 +1,41 @@
+package main
+
+import (
+	"fmt"
+	"time"
+)
+
+func main() {
+
+	canal1, canal2 := make(chan string), make(chan string)
+
+	go func() {
+		for {
+			time.Sleep(time.Millisecond * 500)
+			canal1 <- "Canal 1"
+		}
+	}()
+
+	go func() {
+		for {
+			time.Sleep(time.Second * 3)
+			canal2 <- "Canal 22222222222222222222222222"
+		}
+	}()
+
+	for {
+
+		select {
+		case mensagem1 := <-canal1:
+			fmt.Println(mensagem1)
+
+		case mensagem2 := <-canal2:
+			fmt.Println(mensagem2)
+		}
+		//mensagem1 := <-canal1
+		//fmt.Println(mensagem1)
+
+		//mensagem2 := <-canal2
+		//fmt.Println(mensagem2)
+	}
+}
