@@ -11,6 +11,8 @@ type cenarioTeste struct {
 
 func TestTipoDeEndereco(t *testing.T) {
 
+	t.Parallel()
+
 	enderecoParaTeste := "Avenida Paulista"
 	tipoEnderecoEsperado := "Avenida"
 	tipoEnderecoRecebido := TipoDeEndereco(enderecoParaTeste)
@@ -20,13 +22,15 @@ func TestTipoDeEndereco(t *testing.T) {
 }
 
 func TestVariosTipoDeEndereco(t *testing.T) {
+	
+	t.Parallel()
 
 	cenariosDeTeste := []cenarioTeste{
 		{"Rua Carlos Von Koseritz", "Rua"},
 		{"Avenida Brasil", "Avenida"},
-		{"Estrada Tatuapé", "Estrada"},
+		//{"Estrada Tatuapé", "Estrada"},
 		{"Rodovia João Dias", "Rodovia"},
-		{"Beco do Adelar", "Tipo Inválido"},
+		//{"Beco do Adelar", "Tipo Inválido"},
 	}
 
 	for _, cenarioTeste := range cenariosDeTeste {
