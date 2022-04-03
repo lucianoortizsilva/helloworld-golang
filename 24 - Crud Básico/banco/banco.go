@@ -2,6 +2,7 @@ package banco
 
 import (
 	"database/sql"
+	"fmt"
 
 	_ "github.com/go-sql-driver/mysql" //Driver de conexao Mysql
 )
@@ -20,6 +21,8 @@ func Conectar() (*sql.DB, error) {
 	if erro = db.Ping(); erro != nil {
 		return nil, erro
 	}
+
+	fmt.Println("BANCO DE DADOS INICIALIZADO NA PORTA 5000")
 
 	return db, nil
 }
