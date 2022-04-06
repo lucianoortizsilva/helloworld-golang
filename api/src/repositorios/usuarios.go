@@ -119,3 +119,20 @@ func (repositorio Usuarios) Deletar(ID uint64) error {
 
 	return nil
 }
+
+func (repositorio Usuarios) BuscarPorEmail(email string) (modelos.Usuario, error) {
+	sql := "select id, senha from usuarios where email = ?"
+	linha, erro := repositorio.db.Query(sql, email)
+	if erro != nil {
+		return modelos.Usuario{}, erro
+	}
+	defer linha.Close()
+
+	var usuario modelos.Usuario
+	if linha.Next() {
+		if erro = linha.Scan(&usuario.ID, &usuario.Senha); erro != nil {
+			return modelos.Usuario{}, erro
+		}
+	}
+	return usuario, nil
+}
