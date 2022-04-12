@@ -5,12 +5,14 @@ import (
 	"log"
 	"net/http"
 	"webapp/src/config"
+	"webapp/src/cookies"
 	"webapp/src/router"
 	"webapp/src/utils"
 )
 
 func init() {
 	config.Carregar()
+	cookies.Configurar()
 }
 
 func main() {
