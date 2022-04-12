@@ -2,7 +2,7 @@ package controllers
 
 import (
 	"net/http"
-	"webapp/src/router/utils"
+	"webapp/src/utils"
 )
 
 func CarregarTelaDeLogin(w http.ResponseWriter, r *http.Request) {

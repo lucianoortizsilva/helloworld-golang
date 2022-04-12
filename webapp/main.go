@@ -4,14 +4,18 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"webapp/src/config"
 	"webapp/src/router"
-	"webapp/src/router/utils"
+	"webapp/src/utils"
 )
+
+func init() {
+	config.Carregar()
+}
 
 func main() {
 	utils.CarregarTemplates()
 	r := router.Gerar()
-
-	fmt.Println("Rodando webapp")
-	log.Fatal(http.ListenAndServe(":3000", r))
+	fmt.Printf("Rodando WebApp na porta %d\n", config.Porta)
+	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%d", config.Porta), r))
 }
