@@ -1,10 +1,10 @@
 $('#formulario-cadastro').on('submit', criarUsuario);
 
 function criarUsuario(evento) {
-    evento.preventDefault();//não da refresh na tela
+    evento.preventDefault();
 
     if ($('#senha').val() != $('#confirmar-senha').val()) {
-        alert("As senhas não coincidem!")
+        alert('Ops...As senhas não coincidem!')
         return;
     }
 
@@ -17,5 +17,10 @@ function criarUsuario(evento) {
            nick: $('#nick').val(),
            senha: $('#senha').val()
         }
-    });
+    }).done(function() { // 201 200 204 ..
+        alert('Usuário cadastrado com sucesso!')
+    }).fail(function(erro) { // 400 404 401 403 500 ...
+        console.log(erro);                    
+        alert('Erro ao cadastrar usuário!')
+    });    
 }
