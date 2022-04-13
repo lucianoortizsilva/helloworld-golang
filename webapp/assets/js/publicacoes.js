@@ -4,6 +4,7 @@ $(document).on('click', '.curtir-publicacao', curtirPublicacao);
 $(document).on('click', '.descurtir-publicacao', descurtirPublicacao);
 
 $('#atualizar-publicacao').on('click', atualizarPublicacao);
+$('.deletar-publicacao').on('click', deletarPublicacao);
 
 function criarPublicacao(evento) {
     evento.preventDefault();
@@ -18,7 +19,7 @@ function criarPublicacao(evento) {
     }).done(function() {
         window.location = "/home";
     }).fail(function() {
-        Swal.fire("Ops...", "Erro ao criar a publicação!", "error");
+        ///
     })
 }
 
@@ -43,7 +44,7 @@ function curtirPublicacao(evento) {
         elementoClicado.removeClass('curtir-publicacao');
 
     }).fail(function() {
-        alert('Erro ao curtir a publicação!')
+        //
     }).always(function() {
         elementoClicado.prop('disabled', false);
     });
@@ -70,7 +71,7 @@ function descurtirPublicacao(evento) {
         elementoClicado.addClass('curtir-publicacao');
 
     }).fail(function() {
-        alert('Erro ao descurtir a publicação!')
+        ////
     }).always(function() {
         elementoClicado.prop('disabled', false);
     });
@@ -89,13 +90,31 @@ function atualizarPublicacao() {
             conteudo: $('#conteudo').val()
         }
     }).done(function() {
-            alert('Publicação editada com sucesso!')
-            .then(function() {
-                window.location = "/home";
-            })
+        window.location = "/home";
     }).fail(function() {
-        alert('Erro ao editar a publicação')
+        ///
     }).always(function() {
         $('#atualizar-publicacao').prop('disabled', false);
     })
 }
+
+function deletarPublicacao(evento) {
+    evento.preventDefault();
+
+        const elementoClicado = $(evento.target);
+        const publicacao = elementoClicado.closest('div')
+        const publicacaoId = publicacao.data('publicacao-id');
+    
+        elementoClicado.prop('disabled', true);
+    
+        $.ajax({
+            url: `/publicacoes/${publicacaoId}`,
+            method: "DELETE"
+        }).done(function() {
+            publicacao.fadeOut("slow", function() {
+                $(this).remove();
+            });
+        }).fail(function() {
+            /////
+        });
+    }
