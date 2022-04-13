@@ -9,6 +9,7 @@ import (
 	"webapp/src/respostas"
 )
 
+// CriarUsuario chama a API para cadastrar um usuário no banco de dados
 func CriarUsuario(w http.ResponseWriter, r *http.Request) {
 	r.ParseForm()
 
@@ -35,8 +36,7 @@ func CriarUsuario(w http.ResponseWriter, r *http.Request) {
 	if response.StatusCode >= 400 {
 		respostas.TratarStatusCodeDeErro(w, response)
 		return
-	} else {
-		respostas.JSON(w, response.StatusCode, nil)
 	}
 
+	respostas.JSON(w, response.StatusCode, nil)
 }

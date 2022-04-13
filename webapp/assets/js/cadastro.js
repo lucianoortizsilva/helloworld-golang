@@ -4,7 +4,7 @@ function criarUsuario(evento) {
     evento.preventDefault();
 
     if ($('#senha').val() != $('#confirmar-senha').val()) {
-        alert('Ops...As senhas não coincidem!')
+        Swal.fire("Ops...", "As senhas não coincidem!", "error");
         return;
     }
 
@@ -17,10 +17,23 @@ function criarUsuario(evento) {
            nick: $('#nick').val(),
            senha: $('#senha').val()
         }
-    }).done(function() { // 201 200 204 ..
-        alert('Usuário cadastrado com sucesso!')
-    }).fail(function(erro) { // 400 404 401 403 500 ...
-        console.log(erro);                    
-        alert('Erro ao cadastrar usuário!')
-    });    
+    }).done(function() {// 201 200 204 ..
+        Swal.fire("Sucesso!", "Usuário cadastrado com sucesso!", "success")
+            .then(function() {
+                $.ajax({
+                    url: "/login",
+                    method: "POST",
+                    data: {
+                        email: $('#email').val(),
+                        senha: $('#senha').val()
+                    }
+                }).done(function() {
+                    window.location = "/home";
+                }).fail(function() {// 400 404 401 403 500 ...
+                    Swal.fire("Ops...", "Erro ao autenticar o usuário!", "error");
+                })
+            })
+    }).fail(function() {// 400 404 401 403 500 ...
+        Swal.fire("Ops...", "Erro ao cadastrar o usuário!", "error");
+    });
 }
