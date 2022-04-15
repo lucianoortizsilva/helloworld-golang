@@ -10,9 +10,10 @@ import (
 )
 
 var (
-	StringConexaoBanco = ""
-	Porta              = 0
-	SecretKey          []byte
+	StringConexaoBancoSemDocker = ""
+	StringConexaoBancoComDocker = ""
+	Porta                       = 0
+	SecretKey                   []byte
 )
 
 // Carregar vai inicializar as variáveis de ambiente
@@ -28,10 +29,9 @@ func Carregar() {
 		Porta = 9000
 	}
 
-	StringConexaoBanco = fmt.Sprintf("%s:%s@/%s?charset=utf8&parseTime=True&loc=Local",
-		os.Getenv("DB_USUARIO"),
-		os.Getenv("DB_SENHA"),
-		os.Getenv("DB_NOME"))
+	StringConexaoBancoSemDocker = fmt.Sprintf("%s:%s@/%s?charset=utf8&parseTime=True&loc=Local", os.Getenv("MYSQL_USER"), os.Getenv("MYSQL_PASSWORD"), os.Getenv("MYSQL_DATABASE"))
+
+	StringConexaoBancoComDocker = fmt.Sprintf("%s:%s@tcp(host.docker.internal:3306)/%s?parseTime=true", os.Getenv("MYSQL_USER"), os.Getenv("MYSQL_PASSWORD"), os.Getenv("MYSQL_DATABASE"))
 
 	SecretKey = []byte(os.Getenv("SECRET_KEY"))
 }

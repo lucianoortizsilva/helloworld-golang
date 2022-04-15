@@ -8,3 +8,25 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8080:5000"
+    networks:
+      - app-network
+
+  mysql-app:
+    container_name: mysql-db
+    image: mysql:oracle
+    restart: always
+    env_file:
+      - ./api/.env
+    ports:
+      - "3306:3306"
+    volumes:
+      - .docker/db-mysql:/var/lib/mysql
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  db-mysql:
