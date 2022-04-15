@@ -33,7 +33,8 @@ function criarUsuario(evento) {
                     Swal.fire("Ops...", "Erro ao autenticar o usuário!", "error");
                 })
             })
-    }).fail(function() {// 400 404 401 403 500 ...
+    }).fail(function(evento) {// 400 404 401 403 500 ...
+        console.log(evento)
         Swal.fire("Ops...", "Erro ao cadastrar o usuário!", "error");
     });
 }

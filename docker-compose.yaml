@@ -1,26 +1,47 @@
 version: '3.9'
 
 services:
-  backend-app:
-    container_name: backend-app
-    build:
-      context: ./api
-      dockerfile: Dockerfile
-    ports:
-      - "8080:5000"
-    networks:
-      - app-network
-
-  mysql-app:
+  
+  service-mysql-db:
     container_name: mysql-db
-    image: mysql:oracle
-    restart: always
     env_file:
       - ./api/.env
+    image: mysql:oracle
     ports:
       - "3306:3306"
     volumes:
       - .docker-db-mysql:/var/lib/mysql
+    networks:
+      - app-network
+  
+  service-backend-app:
+    container_name: backend-app
+    image : backend-app:latest
+    env_file:
+      - ./api/.env
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    depends_on:
+      - service-mysql-db
+    networks:
+      - app-network
+
+  service-frontend-app:
+    container_name: frontend-app
+    image : frontend-app:latest
+    env_file:
+      - ./webapp/.env
+    build:
+      context: ./webapp
+      dockerfile: Dockerfile
+    ports:
+      - "8080:3000"
+    depends_on:
+      - service-mysql-db
+      - service-backend-app
     networks:
       - app-network
 

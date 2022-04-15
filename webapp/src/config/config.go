@@ -1,8 +1,10 @@
 package config
 
 import (
+	"fmt"
 	"log"
 	"os"
+	"runtime"
 	"strconv"
 
 	"github.com/joho/godotenv"
@@ -29,7 +31,14 @@ func Carregar() {
 		log.Fatal(erro)
 	}
 
-	APIURL = os.Getenv("API_URL")
+	if runtime.GOOS == "windows" {
+		fmt.Println("\nRodando no windows")
+		APIURL = os.Getenv("API_URL_SEM_DOCKER")
+	} else {
+		fmt.Println("\nRodando no linux")
+		APIURL = os.Getenv("API_URL_COM_DOCKER")
+	}
+
 	HaskKey = []byte(os.Getenv("HASH_KEY"))
 	BlockKey = []byte(os.Getenv("BLOCK_KEY"))
 

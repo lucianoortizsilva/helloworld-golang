@@ -23,7 +23,7 @@ func main() {
 
 	config.Carregar()
 	//fmt.Println(config.SecretKey)
-	fmt.Printf("Escutando na porta: %d", config.Porta)
+	fmt.Printf("Rodando Api na porta %d\n", config.Porta)
 	r := router.Gerar()
 	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%d", config.Porta), r))
 
