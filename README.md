@@ -9,6 +9,7 @@
 Uma aplicação de uma simples rede social chamada devbook. \
 Essa aplicação foi desenvolvida através de um curso que fiz na Udemy: [Aprenda Golang do Zero! Desenvolva uma APLICAÇÃO COMPLETA!](https://www.udemy.com/course/aprenda-golang-do-zero-desenvolva-uma-aplicacao-completa/) 
 
+<!--
 ### Como rodar *sem* docker ?
 - Instale o [go](https://go.dev/)
 - Instale o [mysql](https://www.mysql.com/downloads/)
@@ -16,3 +17,4 @@ Essa aplicação foi desenvolvida através de um curso que fiz na Udemy: [Aprend
 - Dentro da pasta .api/ execute o comando `go run main.go`
 
 > **login** **`http://localhost:3000`**
+-->
