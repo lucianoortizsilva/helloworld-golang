@@ -10,7 +10,7 @@ services:
     ports:
       - "3306:3306"
     volumes:
-      - .docker-db-mysql:/var/lib/mysql
+      - .docker/db-mysql:/var/lib/mysql
     networks:
       - app-network
   
@@ -50,4 +50,4 @@ networks:
     driver: bridge
 
 volumes:
-  .docker-db-mysql:
+  .docker:
