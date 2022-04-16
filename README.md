@@ -13,7 +13,7 @@ Essa aplicação foi desenvolvida através de um curso que fiz na Udemy: [Aprend
 - Criar a base dados com as tabelas, conforme arquivo ./api/sql/ddl.sql
 - Dentro da pasta .api/ execute o comando `go run main.go`
 - Dentro da pasta .webapp/ execute o comando `go run main.go`
-- Acesse: > **login** **`http://localhost:3000`**
+- Acesse login: **`http://localhost:3000`**
 
 ### Como rodar com docker ?
 - Instale o [Docker](https://www.docker.com/)
@@ -23,4 +23,4 @@ Essa aplicação foi desenvolvida através de um curso que fiz na Udemy: [Aprend
     - docker exec -it `Colar o container_id` bash
     - mysql -u `Informe usuário` -p `Informe senha`
     - Execute os scripts da pasta ./api/sql/ddl.sql
-    - Acesse: > **login** **`http://localhost:8080`**
+    - Acesse login: **`http://localhost:8080`**
