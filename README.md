@@ -23,3 +23,4 @@ Essa aplicação foi desenvolvida através de um curso que fiz na Udemy: [Aprend
     - docker exec -it `Colar o container_id` bash
     - mysql -u `Informe usuário` -p `Informe senha`
     - Execute os scripts da pasta ./api/sql/ddl.sql
+    - Acesse: > **login** **`http://localhost:8080`**
