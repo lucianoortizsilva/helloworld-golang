@@ -21,6 +21,6 @@ Essa aplicação foi desenvolvida através de um curso que fiz na Udemy: [Aprend
 - Após subir os 3 containers, crie a base de dados acessando o container `mysql-db`:
     - docker container ls (Copie o container_id do mysql-db)
     - docker exec -it `Colar o container_id` bash
-    - mysql -u `Informe usuário` -p `Informe senha`
+    - mysql -u `ortiz` -p `admin`
     - Execute os scripts da pasta ./api/sql/ddl.sql
     - Acesse login: **`http://localhost:8080`**
